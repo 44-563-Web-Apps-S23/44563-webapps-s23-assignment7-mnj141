@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Manoj_Rama - builds a delaying queue</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      .flex-container {
+        display: flex;
+        flex-direction: row;
+        background-color: rgb(174, 0, 255);
+      }
+
+      .flex-container > div {
+        /*div children of the flex container*/
+        background-color: #f1f1f1;
+        margin: 10px;
+        padding: 20px;
+        font-size: 30px;
+      }
+
+      /* Responsive layout */
+      @media (max-width: 600px) {
+        .flex-container {
+          flex-direction: column;
+          background-color: green;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <h2>Manoj_Rama - builds a delaying queue</h2>
+    <div class="container-fluid">
+      <div class="flex-container" id="target">
+        <div class="delay">row item 1</div>
+        <div class="delay">row item 2</div>
+        <div class="delay">row item 3</div>
+      </div>
+      <div>
+        <p>
+          Press the button to create an new element of type div and then add it
+          to the container.
+        </p>
+        <input type="text" id="text_input" name="text_input" /><br />
+        <button onclick="makeNewDiv()">Add value</button>
+        <p>Press the button to add the last element to the container.</p>
+        <button class="btn btn-warning" onclick="get()">Get</button>
+        <button class="btn btn-info" onclick="delay()">Delay</button>
+      </div>
+      <br />
+      <div>
+        <button class="btn btn-primary" onclick="promotion()">Promote</button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function makeNewDiv() {
+      /* make the div and its text */
+      let element = document.createElement("div");
+      element.innerHTML = document.getElementById("text_input").value;
+      element.setAttribute("class", "delay");
+      element.style.color = "orange";
+
+      /* add it to the container */
+      let container = document.getElementById("target");
+      container.insertBefore(element, container.firstChild);
+    }
+    function get() {
+      queueItems = document.getElementsByClassName("delay");
+
+      let length = queueItems.length;
+      if (length > 0) {
+        queueItems[length - 1].remove();
+      }
+    }
+    function delay() {
+      let queueItems = document.getElementsByClassName("delay");
+      //input = document.getElementById("text_input").value;
+      let length = queueItems.length;
+      //console.log(length);
+
+      if (length > 1) {
+        let element = document.createElement("div");
+        element.innerHTML = queueItems[length - 1].innerHTML;
+
+        queueItems[length - 1].remove();
+        console.log(element);
+
+        let container = document.getElementById("target");
+        container.append(element);
+      }
+    }
+
+    function promotion(){
+        let queueItems = document.getElementsByClassName("delay");
+        let length = queueItems.length;
+        let queueItem = document.getElementsByClassName("delay")[Math.floor(Math.random() * length)];
+        let container = document.getElementById("target");
+        container.insertBefore(queueItem, container.firstChild);
+    }
+  </script>
+</html>
