@@ -61,7 +61,7 @@
       /* make the div and its text */
       let element = document.createElement("div");
       element.innerHTML = document.getElementById("text_input").value;
-      element.setAttribute("class", "delay");
+      element.setAttribute("class", "delayQ");
       element.style.color = "orange";
 
       /* add it to the container */
@@ -69,7 +69,7 @@
       container.insertBefore(element, container.firstChild);
     }
     function get() {
-      queueItems = document.getElementsByClassName("delay");
+      queueItems = document.getElementsByClassName("delayQ");
 
       let length = queueItems.length;
       if (length > 0) {
@@ -77,7 +77,7 @@
       }
     }
     function delay() {
-      let queueItems = document.getElementsByClassName("delay");
+      let queueItems = document.getElementsByClassName("delayQ");
       //input = document.getElementById("text_input").value;
       let length = queueItems.length;
       //console.log(length);
@@ -95,9 +95,9 @@
     }
 
     function promotion(){
-        let queueItems = document.getElementsByClassName("delay");
+        let queueItems = document.getElementsByClassName("delayQ");
         let length = queueItems.length;
-        let queueItem = document.getElementsByClassName("delay")[Math.floor(Math.random() * length)];
+        let queueItem = document.getElementsByClassName("delayQ")[Math.floor(Math.random() * length)];
         let container = document.getElementById("target");
         container.insertBefore(queueItem, container.firstChild);
     }
